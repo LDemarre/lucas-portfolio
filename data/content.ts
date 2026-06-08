@@ -15,7 +15,7 @@ export type Project = {
 };
 
 export const CONTACT = {
-  email: "lucasdemarre@krownsoft.com.ar",
+  email: "ldemarre6@gmail.com",
   linkedin: "https://www.linkedin.com/in/lucas-demarr%C3%A9-18362221a",
   github: "https://github.com/LDemarre",
 };
@@ -36,6 +36,7 @@ export const UI = {
   formSuccess: { es: "¡Gracias! Te voy a responder pronto.", en: "Thanks! I'll get back to you soon." },
   formError: { es: "Algo falló. Probá de nuevo o escribime por mail.", en: "Something went wrong. Try again or email me." },
   formDirect: { es: "O escribime directo", en: "Or reach me directly" },
+  email: { es: "Correo", en: "Email" },
 };
 
 export const NAV: { id: string; label: Loc }[] = [

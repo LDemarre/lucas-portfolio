@@ -33,9 +33,9 @@ export default function Krownsoft() {
             <img
               src="/krownsoft/main-white.svg"
               alt="Krownsoft"
-              className="h-12 md:h-16 w-auto shrink-0"
+              className="h-16 md:h-24 w-auto shrink-0"
             />
-            <div className="hidden md:block h-24 w-px bg-white/10" />
+            <div className="hidden md:block h-28 w-px bg-white/10" />
             <div className="max-w-xl">
               <p className="text-sub leading-relaxed">{t(KROWNSOFT.desc)}</p>
 

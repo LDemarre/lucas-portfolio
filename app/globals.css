@@ -31,6 +31,10 @@ body {
   overflow-x: hidden;
 }
 
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

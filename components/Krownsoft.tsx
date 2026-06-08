@@ -1,11 +1,14 @@
 "use client";
 
 import { useLang } from "@/lib/i18n";
-import { KROWNSOFT } from "@/data/content";
+import { useProjectModal } from "@/lib/projectModal";
+import { KROWNSOFT, PROJECTS } from "@/data/content";
 import Reveal from "./Reveal";
 
 export default function Krownsoft() {
   const { t } = useLang();
+  const { open } = useProjectModal();
+
   return (
     <section
       id="krownsoft"
@@ -49,14 +52,20 @@ export default function Krownsoft() {
                   {t(KROWNSOFT.productsLabel)}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {KROWNSOFT.products.map((p) => (
-                    <span
-                      key={p}
-                      className="text-sm text-sub border border-line rounded-lg px-2.5 py-1"
-                    >
-                      {p}
-                    </span>
-                  ))}
+                  {KROWNSOFT.products.map((id) => {
+                    const proj = PROJECTS.find((p) => p.id === id);
+                    if (!proj) return null;
+                    return (
+                      <button
+                        key={id}
+                        onClick={() => open(proj)}
+                        className="group inline-flex items-center gap-2 text-sm text-sub border border-line rounded-lg px-3 py-1.5 cursor-pointer transition hover:border-gold/40 hover:text-ink hover:-translate-y-0.5"
+                      >
+                        {t(proj.title)}
+                        <span className="text-muted group-hover:text-gold transition">→</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>

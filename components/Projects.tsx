@@ -2,14 +2,8 @@
 
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import {
-  PROJECTS,
-  CATEGORIES,
-  SECTIONS,
-  UI,
-  type Category,
-  type Project,
-} from "@/data/content";
+import { useProjectModal } from "@/lib/projectModal";
+import { PROJECTS, CATEGORIES, SECTIONS, UI, type Category } from "@/data/content";
 import Reveal from "./Reveal";
 import ProjectMockup from "./ProjectMockup";
 
@@ -24,10 +18,13 @@ function catLabel(id: Category) {
   return CATEGORIES.find((c) => c.id === id)!.label;
 }
 
+const CARD_BASIS =
+  "basis-full sm:basis-[calc(50%_-_10px)] lg:basis-[calc(33.333%_-_14px)]";
+
 export default function Projects() {
   const { t } = useLang();
+  const { open } = useProjectModal();
   const [filter, setFilter] = useState<Category | "all">("all");
-  const [active, setActive] = useState<Project | null>(null);
   const list = filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
 
   return (
@@ -49,12 +46,12 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-5">
           {list.map((p, i) => (
-            <Reveal as="article" key={p.id} delay={(i % 3) * 0.08} className="h-full">
+            <Reveal as="article" key={p.id} delay={(i % 3) * 0.08} className={CARD_BASIS}>
               <button
-                onClick={() => setActive(p)}
-                className="group glass h-full w-full text-left rounded-2xl p-6 transition hover:-translate-y-1 hover:border-white/15"
+                onClick={() => open(p)}
+                className="group glass h-full w-full text-left rounded-2xl p-5 transition cursor-pointer hover:-translate-y-1 hover:border-white/15"
               >
                 <div className="relative h-36 rounded-xl mb-4 overflow-hidden border border-line bg-black/25 p-3">
                   <ProjectMockup category={p.category} />
@@ -91,8 +88,6 @@ export default function Projects() {
           ))}
         </div>
       </div>
-
-      {active && <Modal project={active} onClose={() => setActive(null)} />}
     </section>
   );
 }
@@ -109,7 +104,7 @@ function Tab({
   return (
     <button
       onClick={onClick}
-      className={`text-sm px-4 py-1.5 rounded-full border transition ${
+      className={`text-sm px-4 py-1.5 rounded-full border transition cursor-pointer ${
         active
           ? "bg-accent text-charcoal border-accent font-medium"
           : "border-line text-sub hover:text-ink hover:border-white/20"
@@ -117,64 +112,5 @@ function Tab({
     >
       {children}
     </button>
-  );
-}
-
-function Modal({ project, onClose }: { project: Project; onClose: () => void }) {
-  const { t } = useLang();
-  return (
-    <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative glass max-w-lg w-full rounded-2xl p-7 max-h-[85vh] overflow-y-auto">
-        <button
-          onClick={onClose}
-          aria-label={t(UI.close)}
-          className="absolute top-4 right-4 text-muted hover:text-ink text-lg"
-        >
-          ✕
-        </button>
-        <div className="relative h-40 rounded-xl mb-5 overflow-hidden border border-line bg-black/25 p-3">
-          <ProjectMockup category={project.category} />
-        </div>
-        <p className="font-mono text-[10px] tracking-widest uppercase text-accent-2">
-          {t(catLabel(project.category))}
-        </p>
-        {project.krownsoft && (
-          <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-2.5 py-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/krownsoft/icon-gold.svg" alt="" aria-hidden="true" className="h-3.5 w-3.5" />
-            <span className="font-mono text-[10px] tracking-wide text-gold">Krownsoft</span>
-          </span>
-        )}
-        <h3 className="mt-2 text-2xl font-bold pr-6">{t(project.title)}</h3>
-        <p className="mt-2 text-sub">{t(project.tagline)}</p>
-        <Block label={t(UI.problem)} text={t(project.problem)} />
-        <Block label={t(UI.solution)} text={t(project.solution)} />
-        <Block label={t(UI.result)} text={t(project.result)} />
-        <div className="mt-6 flex flex-wrap gap-1.5">
-          {project.stack.map((s) => (
-            <span
-              key={s}
-              className="font-mono text-[11px] text-sub border border-line rounded px-2 py-0.5"
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Block({ label, text }: { label: string; text: string }) {
-  return (
-    <div className="mt-5">
-      <p className="font-mono text-[10px] tracking-widest uppercase text-muted">{label}</p>
-      <p className="mt-1 text-sm text-ink/90 leading-relaxed">{text}</p>
-    </div>
   );
 }

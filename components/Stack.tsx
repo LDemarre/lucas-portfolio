@@ -12,9 +12,13 @@ export default function Stack() {
         <Reveal>
           <h2 className="text-3xl md:text-5xl font-bold">{t(SECTIONS.stack)}</h2>
         </Reveal>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-5">
           {STACK_GROUPS.map((g, i) => (
-            <Reveal key={g.label.en} delay={(i % 3) * 0.06} className="glass rounded-2xl p-6">
+            <Reveal
+              key={g.label.en}
+              delay={(i % 3) * 0.06}
+              className="basis-full sm:basis-[calc(50%_-_10px)] lg:basis-[calc(33.333%_-_14px)] glass rounded-2xl p-6"
+            >
               <h3 className="font-mono text-xs tracking-widest uppercase text-accent-2">
                 {t(g.label)}
               </h3>

@@ -241,7 +241,7 @@ export const KROWNSOFT = {
     en: "Krownsoft is my software, AI agents, and automation company. We build chatbots, voice agents, and custom systems that help businesses grow.",
   },
   productsLabel: { es: "Productos", en: "Products" },
-  products: ["TaskFlow", "ScoutPro", "F-Tracker", "VoiceLog"],
+  products: ["taskflow", "scoutpro", "f-tracker", "voicelog"],
 };
 
 export const SECTIONS = {

@@ -15,7 +15,7 @@ export type Project = {
 };
 
 export const CONTACT = {
-  email: "ldemarre6@gmail.com",
+  email: "contacto@lucasdemarre.dev",
   linkedin: "https://www.linkedin.com/in/lucas-demarr%C3%A9-18362221a",
   github: "https://github.com/LDemarre",
 };

@@ -39,7 +39,7 @@ I'm the founder of **Krownsoft**, my software, AI agents, and automation company
 
 ## Contact
 
-- **Email:** ldemarre6@gmail.com
+- **Email:** contacto@lucasdemarre.dev
 - **LinkedIn:** [lucas-demarré](https://www.linkedin.com/in/lucas-demarr%C3%A9-18362221a)
 
 ---

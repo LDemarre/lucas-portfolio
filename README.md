@@ -40,7 +40,7 @@ I'm the founder of **Krownsoft**, my software, AI agents, and automation company
 ## Contact
 
 - **Email:** lucasdemarre@krownsoft.com.ar
-- **LinkedIn:** [lucas-demarre](https://www.linkedin.com/in/lucas-demarre-18362221a)
+- **LinkedIn:** [lucas-demarré](https://www.linkedin.com/in/lucas-demarr%C3%A9-18362221a)
 
 ---
 

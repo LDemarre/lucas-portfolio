@@ -37,6 +37,17 @@ export const UI = {
   formError: { es: "Algo falló. Probá de nuevo o escribime por mail.", en: "Something went wrong. Try again or email me." },
   formDirect: { es: "O escribime directo", en: "Or reach me directly" },
   email: { es: "Correo", en: "Email" },
+  chatLabel: { es: "Asistente IA", en: "AI assistant" },
+  chatTitle: { es: "Asistente", en: "Assistant" },
+  chatSubtitle: { es: "Preguntame sobre Lucas", en: "Ask me about Lucas" },
+  chatGreeting: {
+    es: "¡Hola! Soy el asistente de Lucas. Preguntame lo que quieras sobre su experiencia, proyectos o stack.",
+    en: "Hi! I'm Lucas's assistant — ask me anything about his experience, projects, or stack.",
+  },
+  chatPlaceholder: { es: "Escribí tu mensaje…", en: "Type your message…" },
+  chatOpen: { es: "Abrir asistente", en: "Open assistant" },
+  chatSend: { es: "Enviar", en: "Send" },
+  chatError: { es: "Ups, algo falló. Probá de nuevo.", en: "Oops, something went wrong. Try again." },
 };
 
 export const NAV: { id: string; label: Loc }[] = [

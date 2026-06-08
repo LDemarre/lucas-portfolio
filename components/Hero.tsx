@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useLang } from "@/lib/i18n";
-import { HERO, UI } from "@/data/content";
+import { HERO } from "@/data/content";
 
 export default function Hero() {
   const { t } = useLang();
@@ -85,10 +85,6 @@ export default function Hero() {
           >
             {t(HERO.ctaContact)}
           </a>
-          <span className="font-mono text-xs text-muted inline-flex items-center gap-2 px-3 py-2 rounded-full border border-line">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-2 animate-pulse" />
-            {t(UI.assistantSoon)}
-          </span>
         </div>
       </div>
     </section>

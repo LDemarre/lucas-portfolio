@@ -4,7 +4,7 @@ Portfolio personal de Lucas Demarré. Next.js 16 (App Router) + React 19 + TypeS
 
 ## ⚠️ Workflow de deploy — SIEMPRE preview primero (regla)
 
-**Nunca pushear cambios directo a `main`.** `main` = producción. Todo cambio pasa primero por una branch → preview deployment de Vercel → recién ahí merge a `main`.
+**Nunca pushear cambios directo a `main`.** `main` = producción y **está protegida** (branch ruleset: push directo = rechazado). Todo cambio pasa primero por una branch → preview deployment de Vercel → **Pull Request** → merge del PR.
 
 Flujo obligatorio para cualquier cambio:
 
@@ -24,19 +24,18 @@ git push -u origin feat/<nombre-corto>
 Al pushear la branch, **Vercel crea un Preview Deployment automático** con una URL propia (`lucas-portfolio-git-<branch>-<scope>.vercel.app`). Ahí se revisa el cambio en vivo, sin tocar producción.
 
 ```bash
-# 4. Una vez aprobado el preview, merge a main (esto dispara el deploy a prod)
-git checkout main
-git merge --no-ff feat/<nombre-corto>
-git push origin main
-git branch -d feat/<nombre-corto>          # limpiar
-git push origin --delete feat/<nombre-corto>
+# 4. Una vez revisado el preview, abrir PR y mergearlo (esto dispara el deploy a prod)
+gh pr create --base main --head feat/<nombre-corto> --title "..." --body "..."
+gh pr merge <n> --squash --delete-branch
 ```
 
-**Resumen:** branch → push → revisar preview → merge a `main` → prod. El merge a main es el único paso que toca producción.
+`git push origin main` directo **falla** (la branch está protegida) — siempre vía PR. El merge del PR es el único paso que toca producción.
 
-## Protección de branch (opcional, recomendado)
+**Resumen:** branch → push → revisar preview → **PR → merge PR** → prod.
 
-Para que `main` quede protegida y se *obligue* el flujo de arriba (no se pueda pushear directo), ver `git status` y activar branch protection en GitHub. Está documentado el cómo en el chat / memoria. Para un proyecto de una sola persona es opcional: la regla de arriba alcanza con disciplina.
+## Protección de branch (ACTIVA)
+
+`main` tiene un **branch ruleset** activo ("require a pull request before merging"): no se puede pushear directo, todo entra por PR. Por eso el paso 4 usa `gh pr ...`. Si un `git push origin main` devuelve *"push declined due to repository rule violations"*, es esto: armá branch + PR.
 
 ## Stack / convenciones
 

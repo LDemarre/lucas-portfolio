@@ -11,6 +11,10 @@
   --color-muted: #6f86a8;
   --color-line: rgba(255, 255, 255, 0.08);
 
+  /* Krownsoft brand (V2) */
+  --color-gold: #d2a633;
+  --color-charcoal: #131313;
+
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 }

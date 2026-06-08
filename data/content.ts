@@ -228,6 +228,15 @@ export const ABOUT = {
   },
 };
 
+export const KROWNSOFT = {
+  eyebrow: { es: "MI EMPRESA", en: "MY COMPANY" },
+  role: { es: "Fundador", en: "Founder" },
+  desc: {
+    es: "Krownsoft es mi empresa de desarrollo de software, agentes de IA y automatización. Construimos chatbots, agentes de voz y sistemas a medida que ayudan a las empresas a crecer.",
+    en: "Krownsoft is my software, AI agents, and automation company. We build chatbots, voice agents, and custom systems that help businesses grow.",
+  },
+};
+
 export const SECTIONS = {
   projects: { es: "Proyectos", en: "Projects" },
   projectsSub: { es: "Una selección de lo que construí.", en: "A selection of what I've built." },

@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
+import Krownsoft from "@/components/Krownsoft";
 import Stack from "@/components/Stack";
 import Experience from "@/components/Experience";
 import About from "@/components/About";
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <Projects />
+        <Krownsoft />
         <Stack />
         <Experience />
         <About />

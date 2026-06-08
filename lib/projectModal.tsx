@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 import { type Project, type Category, UI, CATEGORIES } from "@/data/content";
 import { useLang } from "./i18n";
 import ProjectMockup from "@/components/ProjectMockup";
@@ -30,6 +30,15 @@ export function ProjectModalProvider({ children }: { children: ReactNode }) {
 
 function Modal({ project, onClose }: { project: Project; onClose: () => void }) {
   const { t } = useLang();
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   return (
     <div
       className="fixed inset-0 z-[60] flex items-center justify-center p-4"
@@ -41,9 +50,11 @@ function Modal({ project, onClose }: { project: Project; onClose: () => void }) 
         <button
           onClick={onClose}
           aria-label={t(UI.close)}
-          className="absolute top-4 right-4 text-muted hover:text-ink text-lg cursor-pointer"
+          className="absolute top-3.5 right-3.5 h-8 w-8 inline-flex items-center justify-center rounded-full border border-line text-muted hover:text-ink hover:border-white/25 hover:bg-white/5 transition cursor-pointer"
         >
-          ✕
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
         </button>
         <div className="relative h-40 rounded-xl mb-5 overflow-hidden border border-line bg-black/25 p-3">
           <ProjectMockup category={project.category} />

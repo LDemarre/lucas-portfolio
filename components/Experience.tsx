@@ -25,6 +25,17 @@ export default function Experience() {
                   <span className="text-sub font-normal">— {t(j.role)}</span>
                 </h3>
                 <p className="mt-1.5 text-sm text-sub max-w-2xl">{t(j.desc)}</p>
+                {j.url && (
+                  <a
+                    href={j.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono text-gold border border-gold/30 rounded-full px-3 py-1.5 hover:bg-gold/10 transition"
+                  >
+                    {j.url.replace("https://", "")}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                )}
               </div>
               <div className="shrink-0 md:text-right">
                 <p className="font-mono text-xs text-accent-2">{t(j.period)}</p>

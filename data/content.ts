@@ -183,11 +183,12 @@ export const STACK_GROUPS: { label: Loc; items: string[] }[] = [
   { label: { es: "DevOps", en: "DevOps" }, items: ["Docker", "EasyPanel", "VPS", "Nginx", "GitHub Actions", "Vercel"] },
 ];
 
-export type Job = { company: string; role: Loc; place: string; period: Loc; desc: Loc };
+export type Job = { company: string; role: Loc; place: string; period: Loc; desc: Loc; url?: string };
 
 export const EXPERIENCE: Job[] = [
   {
     company: "Solvant LLC",
+    url: "https://solvant.com.ar",
     role: { es: "Desarrollador de IA y Software", en: "AI & Software Developer" },
     place: "Rosario, Argentina",
     period: { es: "Abr 2026 — Presente", en: "Apr 2026 — Present" },
@@ -198,6 +199,7 @@ export const EXPERIENCE: Job[] = [
   },
   {
     company: "PolumPlast",
+    url: "https://polumplast.com.ar",
     role: { es: "Director General (Ventas, Comercial y Finanzas)", en: "General Director (Sales, Commercial & Finance)" },
     place: "Granadero Baigorria, Argentina",
     period: { es: "Sep 2025 — Presente", en: "Sep 2025 — Present" },

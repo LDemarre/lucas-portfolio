@@ -23,50 +23,49 @@ export default function Krownsoft() {
         src="/krownsoft/icon-gold.svg"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute -right-6 -bottom-14 w-60 opacity-[0.06]"
+        className="pointer-events-none absolute -right-8 -bottom-20 w-72 opacity-[0.06]"
       />
 
       <div className="relative mx-auto max-w-6xl px-5">
         <Reveal>
-          <p className="font-mono text-xs tracking-[0.3em] text-gold mb-7">
+          <p className="font-mono text-xs tracking-[0.3em] text-gold mb-6">
             {t(KROWNSOFT.eyebrow)}
           </p>
-          <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-14">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/krownsoft/main-white.svg"
-              alt="Krownsoft"
-              className="h-16 md:h-24 w-auto shrink-0"
-            />
-            <div className="hidden md:block h-28 w-px bg-white/10" />
-            <div className="max-w-xl">
-              <p className="text-sub leading-relaxed">{t(KROWNSOFT.desc)}</p>
 
-              <span className="mt-5 inline-flex items-center gap-2 text-xs font-mono rounded-full border border-gold/40 text-gold px-3 py-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                {t(KROWNSOFT.role)}
-              </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/krownsoft/main-white.svg"
+            alt="Krownsoft"
+            className="h-12 md:h-32 w-auto"
+          />
 
-              <div className="mt-6">
-                <p className="font-mono text-[10px] tracking-widest uppercase text-muted mb-2">
-                  {t(KROWNSOFT.productsLabel)}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {KROWNSOFT.products.map((id) => {
-                    const proj = PROJECTS.find((p) => p.id === id);
-                    if (!proj) return null;
-                    return (
-                      <button
-                        key={id}
-                        onClick={() => open(proj)}
-                        className="group inline-flex items-center gap-2 text-sm text-sub border border-line rounded-lg px-3 py-1.5 cursor-pointer transition hover:border-gold/40 hover:text-ink hover:-translate-y-0.5"
-                      >
-                        {t(proj.title)}
-                        <span className="text-muted group-hover:text-gold transition">→</span>
-                      </button>
-                    );
-                  })}
-                </div>
+          <div className="mt-9 max-w-2xl">
+            <p className="text-sub leading-relaxed">{t(KROWNSOFT.desc)}</p>
+
+            <span className="mt-5 inline-flex items-center gap-2 text-xs font-mono rounded-full border border-gold/40 text-gold px-3 py-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+              {t(KROWNSOFT.role)}
+            </span>
+
+            <div className="mt-6">
+              <p className="font-mono text-[10px] tracking-widest uppercase text-muted mb-2">
+                {t(KROWNSOFT.productsLabel)}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {KROWNSOFT.products.map((id) => {
+                  const proj = PROJECTS.find((p) => p.id === id);
+                  if (!proj) return null;
+                  return (
+                    <button
+                      key={id}
+                      onClick={() => open(proj)}
+                      className="group inline-flex items-center gap-2 text-sm text-sub border border-line rounded-lg px-3 py-1.5 cursor-pointer transition hover:border-gold/40 hover:text-ink hover:-translate-y-0.5"
+                    >
+                      {t(proj.title)}
+                      <span className="text-muted group-hover:text-gold transition">→</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

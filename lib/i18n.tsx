@@ -10,14 +10,12 @@ type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (v: Loc) => string };
 const LanguageContext = createContext<Ctx | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("es");
+  const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
     const saved = localStorage.getItem("lang");
     if (saved === "es" || saved === "en") {
       setLangState(saved);
-    } else if (navigator.language.toLowerCase().startsWith("en")) {
-      setLangState("en");
     }
   }, []);
 

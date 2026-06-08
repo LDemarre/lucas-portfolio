@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${mono.variable}`}>
         <noscript>
           <style>{".reveal{opacity:1 !important;transform:none !important}.hero-init{opacity:1 !important}.hero-mark{opacity:.05 !important}"}</style>

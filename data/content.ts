@@ -35,6 +35,7 @@ export const UI = {
   formSending: { es: "Enviando…", en: "Sending…" },
   formSuccess: { es: "¡Gracias! Te voy a responder pronto.", en: "Thanks! I'll get back to you soon." },
   formError: { es: "Algo falló. Probá de nuevo o escribime por mail.", en: "Something went wrong. Try again or email me." },
+  formInvalidEmail: { es: "Email inválido — revisá el dominio (.com, .dev, .com.ar, etc.).", en: "Invalid email — check the domain (.com, .dev, .com.ar, etc.)." },
   formDirect: { es: "O escribime directo", en: "Or reach me directly" },
   email: { es: "Correo", en: "Email" },
   chatLabel: { es: "Asistente IA", en: "AI assistant" },

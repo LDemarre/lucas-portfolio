@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { isValidEmail } from "@/lib/email";
 
 const TO = process.env.CONTACT_TO_EMAIL || "contacto@lucasdemarre.dev";
 const FROM = process.env.CONTACT_FROM_EMAIL || "Lucas Demarré <noreply@lucasdemarre.dev>";
-
-const isEmail = (s: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s);
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.RESEND_API_KEY;
@@ -29,7 +28,7 @@ export async function POST(req: NextRequest) {
   if (!name || !email || !message) {
     return NextResponse.json({ success: false, error: "missing_fields" }, { status: 422 });
   }
-  if (!isEmail(email) || name.length > 200 || email.length > 200 || message.length > 5000) {
+  if (!isValidEmail(email) || name.length > 200 || message.length > 5000) {
     return NextResponse.json({ success: false, error: "invalid" }, { status: 422 });
   }
 

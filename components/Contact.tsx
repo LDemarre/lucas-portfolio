@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { CONTACT, SECTIONS, UI } from "@/data/content";
+import { isValidEmail } from "@/lib/email";
 import Reveal from "./Reveal";
 
-type Status = "idle" | "sending" | "ok" | "err";
+type Status = "idle" | "sending" | "ok" | "err" | "invalid";
 
 export default function Contact() {
   const { t } = useLang();
@@ -14,8 +15,12 @@ export default function Contact() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    setStatus("sending");
     const fd = new FormData(form);
+    if (!isValidEmail(String(fd.get("email") || ""))) {
+      setStatus("invalid");
+      return;
+    }
+    setStatus("sending");
     const payload = {
       name: fd.get("name"),
       email: fd.get("email"),
@@ -65,7 +70,7 @@ export default function Contact() {
             </div>
             <div className="mt-4">
               <label htmlFor="cf-message" className={label}>{t(UI.formMessage)}</label>
-              <textarea id="cf-message" name="message" required rows={4} className={`${field} resize-y`} />
+              <textarea id="cf-message" name="message" required rows={4} className={`${field} resize-y max-h-40`} />
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-4">
@@ -81,6 +86,9 @@ export default function Contact() {
               )}
               {status === "err" && (
                 <span role="alert" className="text-sm text-red-400">{t(UI.formError)}</span>
+              )}
+              {status === "invalid" && (
+                <span role="alert" className="text-sm text-red-400">{t(UI.formInvalidEmail)}</span>
               )}
             </div>
           </form>

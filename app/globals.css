@@ -71,3 +71,16 @@ body {
     transition: none;
   }
 }
+
+.hero-init,
+.hero-mark {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-init {
+    opacity: 1;
+  }
+  .hero-mark {
+    opacity: 0.05;
+  }
+}

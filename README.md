@@ -1,67 +1,41 @@
-# Lucas Demarré — Portfolio
+# Lucas Demarré
 
-Personal portfolio of **Lucas Demarré** — AI &amp; Software Developer building voice agents, chatbots, and automation for businesses.
+**AI & Software Developer** — I build voice agents, chatbots, and automation that businesses actually use.
 
-![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
-![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?logo=vercel&logoColor=white)
-
-🔗 **Live:** [lucas-portfolio-tau.vercel.app](https://lucas-portfolio-tau.vercel.app)
+**Portfolio:** https://lucas-portfolio-tau.vercel.app
 
 ---
 
-## About
+## About me
 
-A bilingual (ES/EN) single-page portfolio showcasing my work in **conversational AI** (voice agents &amp; chatbots), **process automation**, and **full-stack development** — presented as concise case studies (problem → solution → stack → result).
+I design and ship production systems that combine conversational AI and custom software — voice agents, chatbots, process automation, and full-stack applications that automate sales, customer service, and operations for real businesses.
 
-## Features
+I'm currently studying AI Engineering at Universidad de Palermo (and already an AI Technician from UNR). Beyond the code, I also run the commercial and financial side of a company, so I tend to think about projects in terms of real business impact — not just features.
 
-- 🌐 **Bilingual ES/EN** with an instant toggle (auto-detects browser language, persists choice)
-- 🎨 **Dark, modern design** with an electric-blue accent and a dedicated brand-styled section
-- 🧩 **Project case studies** with category filtering and detail modals
-- ⚡ **Static-generated**, fast and fully **responsive** (mobile-first)
-- ♿ Respects `prefers-reduced-motion` and degrades gracefully without JS
+## What I do
 
-## Tech stack
+- **Voice agents** — 24/7 AI agents that answer calls, qualify leads, and book appointments (Retell AI, n8n)
+- **Chatbots** — WhatsApp and multichannel assistants integrated with ERPs and databases
+- **Automation** — workflows that connect AI, payments, and business systems
+- **Full-stack software** — web platforms and mobile apps, end to end
 
-| Area | Tech |
-|------|------|
-| Framework | Next.js 16 (App Router) + React 19 |
-| Language | TypeScript |
-| Styling | Tailwind CSS 4 |
-| Motion | Lenis (smooth scroll) + IntersectionObserver reveals |
-| Hosting | Vercel (auto-deploy on push) |
+## Krownsoft
 
-## Getting started
+I'm the founder of **Krownsoft**, my software, AI agents, and automation company. Products built under Krownsoft include **TaskFlow**, **ScoutPro**, **F-Tracker**, and **VoiceLog**.
 
-```bash
-git clone https://github.com/LDemarre/lucas-portfolio.git
-cd lucas-portfolio
-npm install
-npm run dev
-```
+## Tech I work with
 
-Open [http://localhost:3000](http://localhost:3000).
+- **AI & Automation:** Retell AI, n8n, OpenAI, Anthropic, WhatsApp API
+- **Frontend:** TypeScript, React, Next.js, Tailwind CSS, Flutter
+- **Backend:** Node.js, FastAPI, Supabase, PostgreSQL, Redis
+- **DevOps:** Docker, VPS, GitHub Actions, Vercel
 
-Production build:
+## Education & languages
 
-```bash
-npm run build && npm start
-```
-
-## Project structure
-
-```
-app/             # App Router — layout, page, global styles
-components/      # UI sections (Hero, Projects, Krownsoft, Stack, Experience, About, Contact…)
-data/content.ts  # Bilingual content — single source of truth
-lib/             # i18n context + smooth scroll
-public/          # Static assets (logos, etc.)
-```
-
-All copy lives in `data/content.ts` as `{ es, en }` pairs, so adding or editing content never touches the components.
+- **AI Engineering** — Universidad de Palermo (in progress)
+- **Technician in Artificial Intelligence** — Universidad Nacional de Rosario
+- Certifications: DeepLearning.AI TensorFlow Developer · Linguaskill English C1 (Cambridge)
+- Spanish (native) · English (C1)
 
 ## Contact
 
@@ -70,4 +44,4 @@ All copy lives in `data/content.ts` as `{ es, en }` pairs, so adding or editing 
 
 ---
 
-© 2026 Lucas Demarré
+<sub>This portfolio is open source — built with Next.js, TypeScript &amp; Tailwind CSS.</sub>

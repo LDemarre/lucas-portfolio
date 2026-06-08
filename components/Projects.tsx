@@ -11,6 +11,7 @@ import {
   type Project,
 } from "@/data/content";
 import Reveal from "./Reveal";
+import ProjectMockup from "./ProjectMockup";
 
 const catColor: Record<Category, string> = {
   ai: "#d2a633",
@@ -33,7 +34,7 @@ export default function Projects() {
     <section id="projects" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
-          <h2 className="text-3xl md:text-4xl font-bold">{t(SECTIONS.projects)}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold">{t(SECTIONS.projects)}</h2>
           <p className="mt-3 text-sub">{t(SECTIONS.projectsSub)}</p>
         </Reveal>
 
@@ -55,28 +56,23 @@ export default function Projects() {
                 onClick={() => setActive(p)}
                 className="group glass h-full w-full text-left rounded-2xl p-6 transition hover:-translate-y-1 hover:border-white/15"
               >
-                <div
-                  className="relative h-28 rounded-xl mb-5 flex items-end p-4"
-                  style={{
-                    background: `linear-gradient(135deg, ${catColor[p.category]}26, transparent)`,
-                    border: "1px solid var(--color-line)",
-                  }}
-                >
+                <div className="relative h-36 rounded-xl mb-4 overflow-hidden border border-line bg-black/25 p-3">
+                  <ProjectMockup category={p.category} />
                   {p.krownsoft && (
-                    <span className="absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-black/40 px-2 py-1">
+                    <span className="absolute top-2 right-2 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-black/60 px-2 py-1 backdrop-blur-sm">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/krownsoft/icon-gold.svg" alt="" aria-hidden="true" className="h-3 w-3" />
                       <span className="font-mono text-[9px] tracking-wide text-gold">Krownsoft</span>
                     </span>
                   )}
-                  <span
-                    className="font-mono text-[10px] tracking-widest uppercase"
-                    style={{ color: catColor[p.category] }}
-                  >
-                    {t(catLabel(p.category))}
-                  </span>
                 </div>
-                <h3 className="font-semibold text-lg leading-snug group-hover:text-accent-2 transition">
+                <span
+                  className="font-mono text-[10px] tracking-widest uppercase"
+                  style={{ color: catColor[p.category] }}
+                >
+                  {t(catLabel(p.category))}
+                </span>
+                <h3 className="mt-1.5 font-semibold text-lg leading-snug group-hover:text-accent-2 transition">
                   {t(p.title)}
                 </h3>
                 <p className="mt-2 text-sm text-sub">{t(p.tagline)}</p>
@@ -141,6 +137,9 @@ function Modal({ project, onClose }: { project: Project; onClose: () => void }) 
         >
           ✕
         </button>
+        <div className="relative h-40 rounded-xl mb-5 overflow-hidden border border-line bg-black/25 p-3">
+          <ProjectMockup category={project.category} />
+        </div>
         <p className="font-mono text-[10px] tracking-widest uppercase text-accent-2">
           {t(catLabel(project.category))}
         </p>

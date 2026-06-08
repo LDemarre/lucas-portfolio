@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body className={`${sans.variable} ${mono.variable}`}>
         <noscript>
-          <style>{".reveal{opacity:1 !important;transform:none !important}"}</style>
+          <style>{".reveal{opacity:1 !important;transform:none !important}.hero-init{opacity:1 !important}.hero-mark{opacity:.05 !important}"}</style>
         </noscript>
         <Providers>{children}</Providers>
       </body>

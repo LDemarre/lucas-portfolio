@@ -10,7 +10,7 @@ export default function About() {
     <section id="about" className="py-24 md:py-32 border-t border-line">
       <div className="mx-auto max-w-6xl px-5 grid lg:grid-cols-2 gap-12">
         <Reveal>
-          <h2 className="text-3xl md:text-4xl font-bold">{t(ABOUT.title)}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold">{t(ABOUT.title)}</h2>
           <p className="mt-5 text-sub leading-relaxed max-w-xl">{t(ABOUT.body)}</p>
           <div className="mt-8">
             <h3 className="font-mono text-xs tracking-widest uppercase text-muted">

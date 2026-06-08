@@ -10,7 +10,7 @@ export default function Stack() {
     <section id="stack" className="py-24 md:py-32 border-t border-line">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
-          <h2 className="text-3xl md:text-4xl font-bold">{t(SECTIONS.stack)}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold">{t(SECTIONS.stack)}</h2>
         </Reveal>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {STACK_GROUPS.map((g, i) => (

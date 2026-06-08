@@ -10,7 +10,7 @@ export default function Experience() {
     <section id="experience" className="py-24 md:py-32 border-t border-line">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
-          <h2 className="text-3xl md:text-4xl font-bold">{t(SECTIONS.experience)}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold">{t(SECTIONS.experience)}</h2>
         </Reveal>
         <div className="mt-10 space-y-4">
           {EXPERIENCE.map((j, i) => (

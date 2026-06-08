@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const TO = process.env.CONTACT_TO_EMAIL || "lucasdemarre@krownsoft.com.ar";
-const FROM = process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>";
+const TO = process.env.CONTACT_TO_EMAIL || "ldemarre6@gmail.com";
+const FROM = process.env.CONTACT_FROM_EMAIL || "Lucas Demarré <noreply@lucasdemarre.dev>";
 
 const isEmail = (s: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s);
 

@@ -36,7 +36,7 @@ export default function Krownsoft() {
           <img
             src="/krownsoft/main-white.svg"
             alt="Krownsoft"
-            className="h-12 md:h-32 w-auto"
+            className="h-14 md:h-36 w-auto"
           />
 
           <div className="mt-9 max-w-2xl">

@@ -17,7 +17,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lucasdemarre.vercel.app"),
+  metadataBase: new URL("https://lucasdemarre.dev"),
   title: "Lucas Demarré — AI & Software Developer",
   icons: { icon: "/personal/favicon.svg" },
   description:
@@ -27,7 +27,17 @@ export const metadata: Metadata = {
     description:
       "Voice agents, chatbots, automation and full-stack software in production.",
     type: "website",
+    url: "https://lucasdemarre.dev",
+    siteName: "Lucas Demarré",
+    locale: "en_US",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lucas Demarré — AI & Software Developer",
+    description:
+      "Voice agents, chatbots, automation and full-stack software in production.",
+  },
+  alternates: { canonical: "https://lucasdemarre.dev" },
 };
 
 export default function RootLayout({

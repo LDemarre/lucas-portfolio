@@ -1,42 +1,118 @@
 "use client";
 
+import { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { CONTACT, SECTIONS } from "@/data/content";
+import { CONTACT, SECTIONS, UI } from "@/data/content";
 import Reveal from "./Reveal";
+
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+type Status = "idle" | "sending" | "ok" | "err";
 
 export default function Contact() {
   const { t } = useLang();
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    const data = new FormData(form);
+    data.append("access_key", ACCESS_KEY ?? "");
+    data.append("from_name", "Portfolio · lucasdemarre.dev");
+    data.append("subject", "Nuevo mensaje desde el portfolio");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+      const json = await res.json();
+      if (json.success) {
+        setStatus("ok");
+        form.reset();
+      } else {
+        setStatus("err");
+      }
+    } catch {
+      setStatus("err");
+    }
+  }
+
+  const field =
+    "w-full rounded-lg bg-black/25 border border-line px-4 py-3 text-ink placeholder:text-muted outline-none transition focus:border-accent-2 focus:ring-1 focus:ring-accent-2/40";
+  const label = "block text-left font-mono text-[11px] tracking-widest uppercase text-muted mb-1.5";
+
   return (
     <section id="contact" className="py-24 md:py-32 border-t border-line">
-      <div className="mx-auto max-w-3xl px-5 text-center">
+      <div className="mx-auto max-w-2xl px-5 text-center">
         <Reveal>
           <h2 className="text-3xl md:text-5xl font-bold">{t(SECTIONS.contact)}</h2>
           <p className="mt-4 text-sub text-lg">{t(SECTIONS.contactSub)}</p>
-          <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <a
-              href={`mailto:${CONTACT.email}`}
-              className="px-6 py-3 rounded-full bg-accent text-charcoal font-semibold hover:bg-accent-2 transition"
-            >
-              {CONTACT.email}
-            </a>
-            <a
-              href={CONTACT.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full border border-line hover:border-accent-2 transition"
-            >
-              LinkedIn
-            </a>
-            {CONTACT.github && (
+
+          <form onSubmit={onSubmit} className="glass mt-10 rounded-2xl p-6 md:p-8 text-left">
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label htmlFor="cf-name" className={label}>{t(UI.formName)}</label>
+                <input id="cf-name" name="name" type="text" required className={field} />
+              </div>
+              <div>
+                <label htmlFor="cf-email" className={label}>{t(UI.formEmail)}</label>
+                <input id="cf-email" name="email" type="email" required className={field} />
+              </div>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="cf-message" className={label}>{t(UI.formMessage)}</label>
+              <textarea id="cf-message" name="message" required rows={4} className={`${field} resize-y`} />
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="px-6 py-3 rounded-full bg-accent text-charcoal font-semibold hover:bg-accent-2 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === "sending" ? t(UI.formSending) : t(UI.formSend)}
+              </button>
+              {status === "ok" && (
+                <span role="status" className="text-sm text-accent-2">{t(UI.formSuccess)}</span>
+              )}
+              {status === "err" && (
+                <span role="alert" className="text-sm text-red-400">{t(UI.formError)}</span>
+              )}
+            </div>
+          </form>
+
+          <div className="mt-10">
+            <p className="font-mono text-[11px] tracking-widest uppercase text-muted mb-3">
+              {t(UI.formDirect)}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={CONTACT.github}
+                href={`mailto:${CONTACT.email}`}
+                className="px-5 py-2.5 rounded-full border border-line hover:border-accent-2 transition text-sm"
+              >
+                {CONTACT.email}
+              </a>
+              <a
+                href={CONTACT.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full border border-line hover:border-accent-2 transition"
+                className="px-5 py-2.5 rounded-full border border-line hover:border-accent-2 transition text-sm"
               >
-                GitHub
+                LinkedIn
               </a>
-            )}
+              {CONTACT.github && (
+                <a
+                  href={CONTACT.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full border border-line hover:border-accent-2 transition text-sm"
+                >
+                  GitHub
+                </a>
+              )}
+            </div>
           </div>
         </Reveal>
       </div>

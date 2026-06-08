@@ -28,6 +28,14 @@ export const UI = {
   result: { es: "Resultado", en: "Result" },
   assistantSoon: { es: "Asistente IA · próximamente", en: "AI assistant · coming soon" },
   all: { es: "Todos", en: "All" },
+  formName: { es: "Nombre", en: "Name" },
+  formEmail: { es: "Email", en: "Email" },
+  formMessage: { es: "Mensaje", en: "Message" },
+  formSend: { es: "Enviar mensaje", en: "Send message" },
+  formSending: { es: "Enviando…", en: "Sending…" },
+  formSuccess: { es: "¡Gracias! Te voy a responder pronto.", en: "Thanks! I'll get back to you soon." },
+  formError: { es: "Algo falló. Probá de nuevo o escribime por mail.", en: "Something went wrong. Try again or email me." },
+  formDirect: { es: "O escribime directo", en: "Or reach me directly" },
 };
 
 export const NAV: { id: string; label: Loc }[] = [

@@ -5,8 +5,6 @@ import { useLang } from "@/lib/i18n";
 import { CONTACT, SECTIONS, UI } from "@/data/content";
 import Reveal from "./Reveal";
 
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
-
 type Status = "idle" | "sending" | "ok" | "err";
 
 export default function Contact() {
@@ -17,17 +15,21 @@ export default function Contact() {
     e.preventDefault();
     const form = e.currentTarget;
     setStatus("sending");
-    const data = new FormData(form);
-    data.append("access_key", ACCESS_KEY ?? "");
-    data.append("from_name", "Portfolio · lucasdemarre.dev");
-    data.append("subject", "Nuevo mensaje desde el portfolio");
+    const fd = new FormData(form);
+    const payload = {
+      name: fd.get("name"),
+      email: fd.get("email"),
+      message: fd.get("message"),
+      botcheck: fd.get("botcheck") ? "1" : "",
+    };
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: data,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-      const json = await res.json();
-      if (json.success) {
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && json.success) {
         setStatus("ok");
         form.reset();
       } else {

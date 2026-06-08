@@ -10,6 +10,9 @@ export const maxDuration = 30;
 
 const google = createGoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY });
 
+// Fallback chain: if one model is rate-limited / unavailable, try the next.
+const MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.0-flash-lite"];
+
 function catName(id: string) {
   return CATEGORIES.find((c) => c.id === id)?.label.en ?? id;
 }
@@ -56,17 +59,46 @@ Rules:
 Everything you know about Lucas:
 ${buildProfile()}`;
 
+type ChatMsg = { role: "user" | "assistant"; content: string };
+
+// Stream text from the first model that works; on early failure (e.g. rate
+// limit) fall back to the next model. Throws only if every model fails.
+async function* streamWithFallback(messages: ChatMsg[]) {
+  let lastErr: unknown;
+  for (const modelId of MODELS) {
+    let emitted = false;
+    try {
+      const result = streamText({
+        model: google(modelId),
+        system: SYSTEM,
+        messages,
+        temperature: 0.5,
+        maxOutputTokens: 500,
+        onError: ({ error }) => { lastErr = error; },
+      });
+      for await (const chunk of result.textStream) {
+        if (chunk) { emitted = true; yield chunk; }
+      }
+      if (emitted) return;
+    } catch (err) {
+      lastErr = err;
+      if (emitted) return; // partial output already sent — stop here
+    }
+  }
+  throw lastErr ?? new Error("all_models_failed");
+}
+
 export async function POST(req: NextRequest) {
   if (!process.env.GEMINI_API_KEY) {
     return NextResponse.json({ error: "not_configured" }, { status: 500 });
   }
-  let body: { messages?: { role?: string; content?: string }[] };
+  let body: { messages?: { role?: string; content?: string }[]; lang?: string };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
-  const messages = (body.messages || [])
+  const messages: ChatMsg[] = (body.messages || [])
     .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
     .slice(-12)
     .map((m) => ({ role: m.role as "user" | "assistant", content: (m.content || "").slice(0, 2000) }));
@@ -74,12 +106,29 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "no_messages" }, { status: 422 });
   }
 
-  const result = streamText({
-    model: google("gemini-2.5-flash"),
-    system: SYSTEM,
-    messages,
-    temperature: 0.5,
-    maxOutputTokens: 500,
+  const lang = body.lang === "es" ? "es" : "en";
+  const busy =
+    lang === "es"
+      ? "Estoy recibiendo muchas consultas en este momento 🙏 Probá de nuevo en un ratito, o escribime por el formulario de abajo."
+      : "I'm getting a lot of requests right now 🙏 Please try again in a moment, or reach me through the form below.";
+
+  const encoder = new TextEncoder();
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      try {
+        for await (const chunk of streamWithFallback(messages)) {
+          controller.enqueue(encoder.encode(chunk));
+        }
+      } catch {
+        // every model failed (rate limit / outage) -> graceful message
+        controller.enqueue(encoder.encode(busy));
+      } finally {
+        controller.close();
+      }
+    },
   });
-  return result.toTextStreamResponse();
+
+  return new Response(stream, {
+    headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
+  });
 }

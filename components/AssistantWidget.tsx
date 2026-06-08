@@ -7,7 +7,7 @@ import { UI } from "@/data/content";
 type Msg = { role: "user" | "assistant"; content: string };
 
 export default function AssistantWidget() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
@@ -39,7 +39,7 @@ export default function AssistantWidget() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({ messages: next, lang }),
       });
       if (!res.ok || !res.body) throw new Error("bad");
       const reader = res.body.getReader();

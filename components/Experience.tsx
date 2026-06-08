@@ -1,11 +1,34 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { EXPERIENCE, SECTIONS } from "@/data/content";
 import Reveal from "./Reveal";
 
+// Whole months from a "YYYY-MM" start to now, minimum 1.
+function monthsSince(start: string, now: Date): number {
+  const [y, m] = start.split("-").map(Number);
+  const months = (now.getFullYear() - y) * 12 + (now.getMonth() + 1 - m);
+  return Math.max(1, months);
+}
+
+function formatDuration(months: number, lang: "es" | "en"): string {
+  const years = Math.floor(months / 12);
+  const rem = months % 12;
+  const mo = (n: number) =>
+    lang === "es" ? `${n} ${n === 1 ? "mes" : "meses"}` : `${n} ${n === 1 ? "month" : "months"}`;
+  const yr = (n: number) =>
+    lang === "es" ? `${n} ${n === 1 ? "año" : "años"}` : `${n} ${n === 1 ? "year" : "years"}`;
+  if (years === 0) return mo(months);
+  if (rem === 0) return yr(years);
+  return lang === "es" ? `${yr(years)} y ${mo(rem)}` : `${yr(years)} and ${mo(rem)}`;
+}
+
 export default function Experience() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => setNow(new Date()), []);
+
   return (
     <section id="experience" className="py-24 md:py-32 border-t border-line">
       <div className="mx-auto max-w-6xl px-5">
@@ -39,6 +62,11 @@ export default function Experience() {
               </div>
               <div className="shrink-0 md:text-right">
                 <p className="font-mono text-xs text-accent-2">{t(j.period)}</p>
+                {now && (
+                  <p className="font-mono text-[11px] text-muted" suppressHydrationWarning>
+                    {formatDuration(monthsSince(j.start, now), lang)}
+                  </p>
+                )}
                 <p className="text-xs text-muted">{j.place}</p>
               </div>
             </Reveal>

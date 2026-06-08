@@ -203,7 +203,7 @@ export const STACK_GROUPS: { label: Loc; items: string[] }[] = [
   { label: { es: "DevOps", en: "DevOps" }, items: ["Docker", "EasyPanel", "VPS", "Nginx", "GitHub Actions", "Vercel"] },
 ];
 
-export type Job = { company: string; role: Loc; place: string; period: Loc; desc: Loc; url?: string };
+export type Job = { company: string; role: Loc; place: string; period: Loc; desc: Loc; url?: string; start: string };
 
 export const EXPERIENCE: Job[] = [
   {
@@ -212,6 +212,7 @@ export const EXPERIENCE: Job[] = [
     role: { es: "Desarrollador de IA y Software", en: "AI & Software Developer" },
     place: "Rosario, Argentina",
     period: { es: "Abr 2026 — Presente", en: "Apr 2026 — Present" },
+    start: "2026-04",
     desc: {
       es: "Consultora de IA aplicada a procesos comerciales de PyMEs. Diseño y pongo en producción agentes de voz, chatbots, automatizaciones y software a medida.",
       en: "Applied-AI consultancy for SMB commercial processes. I design and ship voice agents, chatbots, automations, and custom software.",
@@ -223,9 +224,22 @@ export const EXPERIENCE: Job[] = [
     role: { es: "Director General (Ventas, Comercial y Finanzas)", en: "General Director (Sales, Commercial & Finance)" },
     place: "Granadero Baigorria, Argentina",
     period: { es: "Sep 2025 — Presente", en: "Sep 2025 — Present" },
+    start: "2025-09",
     desc: {
       es: "A cargo de la estrategia comercial, el equipo de ventas y las finanzas de la empresa.",
       en: "In charge of the company's commercial strategy, sales team, and finances.",
+    },
+  },
+  {
+    company: "Krownsoft",
+    url: "https://krownsoft.com.ar",
+    role: { es: "Fundador", en: "Founder" },
+    place: "Rosario, Argentina",
+    period: { es: "Jul 2025 — Presente", en: "Jul 2025 — Present" },
+    start: "2025-07",
+    desc: {
+      es: "Mi empresa de desarrollo de software, agentes de IA y automatización. Construyo chatbots, agentes de voz y sistemas a medida que ayudan a las empresas a crecer.",
+      en: "My software, AI agents, and automation company. I build chatbots, voice agents, and custom systems that help businesses grow.",
     },
   },
 ];

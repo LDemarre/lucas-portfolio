@@ -13,10 +13,10 @@ import {
 import Reveal from "./Reveal";
 
 const catColor: Record<Category, string> = {
-  ai: "#3d7bff",
-  platform: "#2457f5",
-  mobile: "#36a3ff",
-  bots: "#7a6bff",
+  ai: "#d2a633",
+  platform: "#e8c45f",
+  mobile: "#c0913f",
+  bots: "#a98c5a",
 };
 
 function catLabel(id: Category) {
@@ -56,12 +56,19 @@ export default function Projects() {
                 className="group glass h-full w-full text-left rounded-2xl p-6 transition hover:-translate-y-1 hover:border-white/15"
               >
                 <div
-                  className="h-28 rounded-xl mb-5 flex items-end p-4"
+                  className="relative h-28 rounded-xl mb-5 flex items-end p-4"
                   style={{
                     background: `linear-gradient(135deg, ${catColor[p.category]}26, transparent)`,
                     border: "1px solid var(--color-line)",
                   }}
                 >
+                  {p.krownsoft && (
+                    <span className="absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-black/40 px-2 py-1">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/krownsoft/icon-gold.svg" alt="" aria-hidden="true" className="h-3 w-3" />
+                      <span className="font-mono text-[9px] tracking-wide text-gold">Krownsoft</span>
+                    </span>
+                  )}
                   <span
                     className="font-mono text-[10px] tracking-widest uppercase"
                     style={{ color: catColor[p.category] }}
@@ -108,7 +115,7 @@ function Tab({
       onClick={onClick}
       className={`text-sm px-4 py-1.5 rounded-full border transition ${
         active
-          ? "bg-accent text-white border-accent"
+          ? "bg-accent text-charcoal border-accent font-medium"
           : "border-line text-sub hover:text-ink hover:border-white/20"
       }`}
     >
@@ -137,6 +144,13 @@ function Modal({ project, onClose }: { project: Project; onClose: () => void }) 
         <p className="font-mono text-[10px] tracking-widest uppercase text-accent-2">
           {t(catLabel(project.category))}
         </p>
+        {project.krownsoft && (
+          <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-2.5 py-1">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/krownsoft/icon-gold.svg" alt="" aria-hidden="true" className="h-3.5 w-3.5" />
+            <span className="font-mono text-[10px] tracking-wide text-gold">Krownsoft</span>
+          </span>
+        )}
         <h3 className="mt-2 text-2xl font-bold pr-6">{t(project.title)}</h3>
         <p className="mt-2 text-sub">{t(project.tagline)}</p>
         <Block label={t(UI.problem)} text={t(project.problem)} />

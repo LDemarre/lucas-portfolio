@@ -23,7 +23,9 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
-        <a href="#top" className="font-semibold tracking-tight">
+        <a href="#top" className="flex items-center gap-2.5 font-semibold tracking-tight">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/personal/mark-gold.svg" alt="" aria-hidden="true" className="h-7 w-auto" />
           Lucas Demarré
         </a>
         <div className="hidden md:flex items-center gap-7 text-sm text-sub">

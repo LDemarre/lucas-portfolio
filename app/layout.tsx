@@ -17,6 +17,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://lucasdemarre.vercel.app"),
   title: "Lucas Demarré — AI & Software Developer",
+  icons: { icon: "/personal/mark-gold.svg" },
   description:
     "AI & Software Developer building voice agents, chatbots, and automation for businesses. Full-stack, AI, and conversational systems in production.",
   openGraph: {

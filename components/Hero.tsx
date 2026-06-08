@@ -12,11 +12,18 @@ export default function Hero() {
     >
       <div
         className="pointer-events-none absolute -top-40 right-[-10%] h-[600px] w-[600px] rounded-full blur-[150px]"
-        style={{ background: "radial-gradient(circle, rgba(36,87,245,0.35), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(210,166,51,0.26), transparent 70%)" }}
       />
       <div
         className="pointer-events-none absolute bottom-[-20%] left-[-10%] h-[500px] w-[500px] rounded-full blur-[160px]"
-        style={{ background: "radial-gradient(circle, rgba(20,60,140,0.22), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(210,166,51,0.13), transparent 70%)" }}
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/personal/mark-gold.svg"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[5%] top-1/2 -translate-y-1/2 w-[240px] md:w-[400px] opacity-[0.05]"
       />
       <div className="relative mx-auto max-w-6xl px-5 w-full">
         <p className="font-mono text-sm tracking-[0.35em] text-accent-2 mb-5">
@@ -31,7 +38,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <a
             href="#projects"
-            className="px-6 py-3 rounded-full bg-accent text-white font-medium hover:bg-accent-2 transition"
+            className="px-6 py-3 rounded-full bg-accent text-charcoal font-semibold hover:bg-accent-2 transition"
           >
             {t(HERO.ctaProjects)}
           </a>

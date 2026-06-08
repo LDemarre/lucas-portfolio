@@ -11,6 +11,7 @@ export type Project = {
   solution: Loc;
   result: Loc;
   stack: string[];
+  krownsoft?: boolean;
 };
 
 export const CONTACT = {
@@ -107,6 +108,7 @@ export const PROJECTS: Project[] = [
   {
     id: "taskflow",
     category: "platform",
+    krownsoft: true,
     title: { es: "TaskFlow", en: "TaskFlow" },
     tagline: { es: "Gestión de pedidos y producción en tiempo real para empresas.", en: "Real-time order and production management for businesses." },
     problem: {
@@ -123,6 +125,7 @@ export const PROJECTS: Project[] = [
   {
     id: "scoutpro",
     category: "mobile",
+    krownsoft: true,
     title: { es: "ScoutPro", en: "ScoutPro" },
     tagline: { es: "App de scouting y evaluación de jugadores de fútbol.", en: "Football player scouting and evaluation app." },
     problem: {
@@ -139,6 +142,7 @@ export const PROJECTS: Project[] = [
   {
     id: "f-tracker",
     category: "mobile",
+    krownsoft: true,
     title: { es: "F-Tracker", en: "F-Tracker" },
     tagline: { es: "Contador de acciones de fútbol en vivo con atajos de teclado.", en: "Live football action counter with keyboard shortcuts." },
     problem: {
@@ -155,6 +159,7 @@ export const PROJECTS: Project[] = [
   {
     id: "voicelog",
     category: "bots",
+    krownsoft: true,
     title: { es: "VoiceLog", en: "VoiceLog" },
     tagline: { es: "Bot de Discord que mide el tiempo en canales de voz.", en: "Discord bot that tracks time in voice channels." },
     problem: {
@@ -235,6 +240,8 @@ export const KROWNSOFT = {
     es: "Krownsoft es mi empresa de desarrollo de software, agentes de IA y automatización. Construimos chatbots, agentes de voz y sistemas a medida que ayudan a las empresas a crecer.",
     en: "Krownsoft is my software, AI agents, and automation company. We build chatbots, voice agents, and custom systems that help businesses grow.",
   },
+  productsLabel: { es: "Productos", en: "Products" },
+  products: ["TaskFlow", "ScoutPro", "F-Tracker", "VoiceLog"],
 };
 
 export const SECTIONS = {

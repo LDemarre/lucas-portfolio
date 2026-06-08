@@ -15,7 +15,7 @@ export default function Contact() {
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <a
               href={`mailto:${CONTACT.email}`}
-              className="px-6 py-3 rounded-full bg-accent text-white font-medium hover:bg-accent-2 transition"
+              className="px-6 py-3 rounded-full bg-accent text-charcoal font-semibold hover:bg-accent-2 transition"
             >
               {CONTACT.email}
             </a>

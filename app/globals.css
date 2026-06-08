@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a1424;
-  --color-bg-2: #0f2a43;
-  --color-surface: #111f36;
-  --color-accent: #2457f5;
-  --color-accent-2: #3d7bff;
-  --color-ink: #f4f8ff;
-  --color-sub: #aec2e0;
-  --color-muted: #6f86a8;
+  --color-bg: #121212;
+  --color-bg-2: #1a1813;
+  --color-surface: #1d1b16;
+  --color-accent: #d2a633;
+  --color-accent-2: #e8c45f;
+  --color-ink: #f4f0e8;
+  --color-sub: #c4bdab;
+  --color-muted: #877f6e;
   --color-line: rgba(255, 255, 255, 0.08);
 
   /* Krownsoft brand (V2) */
@@ -49,8 +49,8 @@ body {
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(110, 150, 210, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(110, 150, 210, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(210, 166, 51, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210, 166, 51, 0.05) 1px, transparent 1px);
   background-size: 46px 46px;
 }
 

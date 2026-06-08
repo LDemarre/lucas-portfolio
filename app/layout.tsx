@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Providers from "@/components/Providers";
 
@@ -40,6 +42,8 @@ export default function RootLayout({
           <style>{".reveal{opacity:1 !important;transform:none !important}.hero-init{opacity:1 !important}.hero-mark{opacity:.05 !important}"}</style>
         </noscript>
         <Providers>{children}</Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

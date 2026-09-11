@@ -27,3 +27,7 @@ yarn-error.log*
 
 # local verification artifacts
 shot.js
+
+# perfil temporal de Chrome que Lighthouse dejó en la raíz (nombre con ruta de Windows)
+C:*
+.lighthouseci/
